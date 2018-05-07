@@ -29,11 +29,14 @@
             <timezone>8</timezone>
         </developer>
     </developers>
-    <!-- how to build, you can specify in the configuration too -->
-    <!-- only jdk1.8 have alpine【102MB】 which is smaller than debian:jessie【980MB】 -->
-    <!-- use to push your image, this your dockerhub.com's username -->
-    <!-- for docker-maven's plugin output its DockerFile -->
 
+    <!--注意使用jdk8版本，因为jdk8才有alpine【alpine就是一个轻量级Linux版本:102MB】比起debian版本980MB实在是太友好了-->
+    <!--当然使用其他版本也是可以，最高测试到jdk-10.0.1-->
+    <!--配置时我们可以使用mvnw [mvn wrapper] 确保代码和源代码版本是一致的-->
+    <!--记得选择启动类，不然打包时将会出现错误-->
+
+    <!--由于Docker需要windows专业版，所以选择的是Linux docker编译-->
+    <!--选择的是发布到github上然后再pull到Linux中进行编译-->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -61,6 +64,40 @@
 
     <build>
         <plugins>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-jar-plugin</artifactId>-->
+                <!--<version>3.1.0</version>-->
+                <!--<configuration>-->
+                    <!--<outputDirectory>${docker.maven.plugin.directory}</outputDirectory>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.0.1.RELEASE</version>
+                <!--<configuration>-->
+                <!--<mainClass>${start-class}</mainClass>-->
+                <!--<layout>JAR</layout>-->
+                <!--</configuration>-->
+                <!--<executions>-->
+                <!--<execution>-->
+                <!--<goals>-->
+                <!--<goal>repackage</goal>-->
+                <!--</goals>-->
+                <!--</execution>-->
+                <!--</executions>-->
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>1.9</source>
+                    <target>1.9</target>
+                    <release>9</release>
+                </configuration>
+            </plugin>
             <!--使用spring-boot插件进行打包，repackage节省各种dependency打包后混乱的问题-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
