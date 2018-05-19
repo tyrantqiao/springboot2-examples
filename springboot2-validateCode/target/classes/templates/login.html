@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1"/>
+    <meta name="description"
+          content="User account registration"/>
+    <meta name="author"
+          content="Tyrant Qiao"/>
+    <title>Unity's game server's page</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+          crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="card text-white p-5 bg-light">
+                    <div class="card-body">
+                        <h1 class="mb-4 text-dark">Login</h1>
+                        <!--th:action will auto add a value name '_csrf'-->
+                        <!--/*@thymesVar id="loginForm" type="com.tyrantqiao.pojo.LoginForm"*/-->
+                        <form action="#"
+                              th:action="@{/user/login}"
+                              th:object="${loginForm}"
+                              method="post"
+                              style="opacity: 0.5;">
+                            <div class="form-group">
+                                <label class="text-dark">Account&nbsp;name
+                                    <br> </label>
+                                <!--/*@thymesVar id="user" type="com.tyrantqiao.pojo.LoginForm"*/-->
+                                <input type="text"
+                                       class="form-control"
+                                       name="username"
+                                       placeholder="Enter username"></div>
+                            <div class="form-group text-dark">
+                                <label>Password</label>
+                                <input type="password"
+                                       class="form-control"
+                                       name="password"
+                                       placeholder="Enter password"></div>
+                            <div class="form-group text-dark">
+                                <label>Validate Code</label>
+                                <input type="text"
+                                       class="form-control"
+                                       name="validateCode"
+                                       placeholder="Enter validate code"/>
+                                <img th:src="@{/image/validateCode}" /></div>
+                            <button type="submit"
+                                    class="btn btn-secondary">Login
+                            </button>
+                        </form>
+                        <div class="divider"></div>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="#">
+                                    <!--th:src="@{}" auto specify resources/static to find files.-->
+                                    <img th:src="@{/images/qq_login.png}"> </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img th:src="@{/images/wx.png}"
+                                         class="img-circle"> </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+    
